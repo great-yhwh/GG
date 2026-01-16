@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Гражданства.txt" />
+    <Content Include="bin\Debug\Организации.txt" />
     <Content Include="bin\Debug\ПИС.exe" />
     <Content Include="bin\Debug\ПИС.pdb" />
     <Content Include="bin\Debug\Статус.txt" />
