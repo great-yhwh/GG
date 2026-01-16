@@ -1,0 +1,12 @@
+C:\Users\Пользователь\Source\Repos\GG\ПИС\bin\Debug\ПИС.exe.config
+C:\Users\Пользователь\Source\Repos\GG\ПИС\bin\Debug\ПИС.exe
+C:\Users\Пользователь\Source\Repos\GG\ПИС\bin\Debug\ПИС.pdb
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.csproj.AssemblyReference.cache
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.Form1.resources
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.FormStart.resources
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.Properties.Resources.resources
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.csproj.GenerateResource.cache
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.exe
+C:\Users\Пользователь\Source\Repos\GG\ПИС\obj\Debug\ПИС.pdb
+C:\Users\Пользователь\source\repos\GG\ПИС\obj\Debug\ПИС.exe.config
