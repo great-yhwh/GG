@@ -9,6 +9,10 @@ public class ConsultationService
     private MigrantStatusCollection statusCollection;
     private ForeignCitizenCollection foreignCitizenCollection;
 
+    // Ассоциация с правилом
+    private PatentRule patentRule; 
+
+
     public ConsultationService()
     {
         // Инициализация коллекций
@@ -16,6 +20,22 @@ public class ConsultationService
         purposeCollection = new EntryPurposeCollection();
         statusCollection = new MigrantStatusCollection();
         foreignCitizenCollection = new ForeignCitizenCollection();
+
+        // Создаем Правило
+        patentRule = new PatentRule();
+
+        // НАСТРАИВАЕМ ПРАВИЛО (Service берет объекты из Collection и кладет в Rule)
+
+        string[] targetCountries = { "Азербайджан", "Таджикистан", "Узбекистан", "Молдова", "Украина" };
+        foreach (string name in targetCountries)
+        {
+            Country c = countryCollection.FindCitizenship(name);
+            patentRule.AddCriteriaCountry(c); // Заполняем критерий
+        }
+
+        // Настройка цели
+        EntryPurpose p = purposeCollection.FindPurpose("Работа");
+        patentRule.SetCriteriaPurpose(p);
     }
 
     /// <summary>
@@ -43,8 +63,25 @@ public class ConsultationService
         return result;
     }
 
-    public string createPatentMessage(String c, String p, String s, String d)
+
+    public String createPatentMessage(String citizenshipStr, String purposeStr, String statusStr, String entryDate, String visitorId)
     {
-        return null; // позже
+
+        // 1. Ищем объекты в коллекциях (Lookup)
+        Country c = countryCollection.FindCitizenship(citizenshipStr);
+        EntryPurpose p = purposeCollection.FindPurpose(purposeStr);
+        MigrantStatus s = statusCollection.FindStatus(statusStr);
+
+        // 2. Получаем и обновляем гражданина (через коллекцию)
+        // Метод GetCitizen внутри ForeignCitizenCollection найдет по ID и сделает set...
+        ForeignCitizen fc = foreignCitizenCollection.GetCitizen(c, p, s, entryDate, visitorId);
+
+        if (fc == null) return "Ошибка: Посетитель не найден.";
+
+        // Вызываем правило
+        String resultMessage = patentRule.PatentMessage(fc);
+
+        // Возвращаем результат
+        return resultMessage;
     }
 }

@@ -15,8 +15,8 @@ public class PatentController
         return service.RequestPatentConsultation();
     }
 
-    public String createPatentMessage(String citizenshipStr, String purposeStr, String statusStr, String entryDate)
+    public String createPatentMessage(String citizenshipStr, String purposeStr, String statusStr, String entryDate, String visitorId)
     {
-        return null;        // Позже
+        return service.createPatentMessage(citizenshipStr, purposeStr, statusStr, entryDate, visitorId);
     }
 }

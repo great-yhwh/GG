@@ -43,14 +43,11 @@ public class ForeignCitizenCollection
         // 1. Ищем гражданина (вызов внутреннего метода)
         ForeignCitizen foundCitizen = getByVisitorId(visitorId);
 
-        // Если не нашли (например, ID пустой или некорректный), создаем нового (защита от сбоя)
         if (foundCitizen == null)
         {
-            // В реальной системе тут была бы ошибка, но для лабы можно вернуть null или создать
             return null;
         }
 
-        // 2. Заполняем данными (вызываем сеттеры у найденного объекта)
         foundCitizen.setCitizenship(citizenship);
         foundCitizen.setPurpose(purpose);
         foundCitizen.setStatus(status);

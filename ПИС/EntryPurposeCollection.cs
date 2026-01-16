@@ -31,6 +31,13 @@ public class EntryPurposeCollection
 
     public EntryPurpose FindPurpose(String purposeStr)
     {
-        return null; // позже
+        foreach (EntryPurpose p in purposes)
+        {
+            if (p.getName() == purposeStr)
+            {
+                return p;
+            }
+        }
+        return null;
     }
 }

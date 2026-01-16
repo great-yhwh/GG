@@ -29,8 +29,15 @@ public class MigrantStatusCollection
         return result;
     }
 
-    public MigrantStatus FindStatus(string statusStr)
+    public MigrantStatus FindStatus(String statusStr)
     {
+        foreach (MigrantStatus s in statuses)
+        {
+            if (s.getName() == statusStr)
+            {
+                return s;
+            }
+        }
         return null;
     }
 }

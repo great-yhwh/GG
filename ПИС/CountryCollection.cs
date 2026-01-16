@@ -9,7 +9,6 @@ public class CountryCollection
 
     public CountryCollection()
     {
-        // При создании коллекции читаем файл и создаем объекты
         countries = new List<Country>();
         if (File.Exists("Гражданства.txt"))
         {
@@ -34,7 +33,13 @@ public class CountryCollection
 
     public Country FindCitizenship(String citizenshipStr)
     {
-        
-        return null; // позже
+        foreach (Country c in countries)
+        {
+            if (c.getName() == citizenshipStr)
+            {
+                return c;
+            }
+        }
+        return null;
     }
 }
