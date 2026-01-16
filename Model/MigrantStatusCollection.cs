@@ -4,27 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class PatentController {
+public class MigrantStatusCollection {
 
-    public PatentController() {
+    public MigrantStatusCollection() {
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public String RequestPatentConsultation() {
+    public String getAllStatus() {
         // TODO implement here
         return null;
     }
 
     /// <summary>
-    /// @param citizenshipStr 
-    /// @param purposeStr 
     /// @param statusStr 
-    /// @param entryDate 
     /// @return
     /// </summary>
-    public String createPatentMessage(String citizenshipStr, String purposeStr, String statusStr, String entryDate) {
+    public MigrantStatus FindStatus(String statusStr) {
         // TODO implement here
         return null;
     }

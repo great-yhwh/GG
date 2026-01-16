@@ -16,7 +16,7 @@ public class GovernmentOrganization {
     /// <summary>
     /// @return
     /// </summary>
-    public GovernmentOrganization GetContactInfo() {
+    public String getName() {
         // TODO implement here
         return null;
     }

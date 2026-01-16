@@ -4,27 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class PatentController {
+public class EntryPurposeCollection {
 
-    public PatentController() {
+    public EntryPurposeCollection() {
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public String RequestPatentConsultation() {
+    public String getAllPurpose() {
         // TODO implement here
         return null;
     }
 
     /// <summary>
-    /// @param citizenshipStr 
     /// @param purposeStr 
-    /// @param statusStr 
-    /// @param entryDate 
     /// @return
     /// </summary>
-    public String createPatentMessage(String citizenshipStr, String purposeStr, String statusStr, String entryDate) {
+    public EntryPurpose FindPurpose(String purposeStr) {
         // TODO implement here
         return null;
     }

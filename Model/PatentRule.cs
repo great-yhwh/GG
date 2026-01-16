@@ -11,18 +11,21 @@ public class PatentRule {
 
     public List<Country> criteriaCountries;
 
-    public EntryPurpose criteriaPurpose;
+    public void criteriaPurpose;
 
-    public MigrantStatus criteriaStatus;
+    public void criteriaStatus;
+
+    public String messagePatentNeed;
+
+    public String messagePatentNoNeed;
+
+    public Integer criteriaDate;
 
     /// <summary>
-    /// @param citizenship 
-    /// @param purpose 
-    /// @param status 
-    /// @param entryDate 
+    /// @param foreignCitizen 
     /// @return
     /// </summary>
-    public String PatentMessage(Country citizenship, EntryPurpose purpose, MigrantStatus status, void entryDate) {
+    public String PatentMessage(ForeignCitizen foreignCitizen) {
         // TODO implement here
         return null;
     }

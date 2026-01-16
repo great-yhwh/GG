@@ -9,45 +9,74 @@ public class ForeignCitizen {
     public ForeignCitizen() {
     }
 
-    public void GetConsultationData() {
-        // TODO implement here
-    }
+    public String id;
+
+    public String entryDate;
 
     /// <summary>
-    /// @param citizenshipStr 
-    /// @param purposeStr 
-    /// @param statusStr 
-    /// @param entryDate 
     /// @return
     /// </summary>
-    public String ProcessSelection(void citizenshipStr, void purposeStr, void statusStr, void entryDate) {
+    public String getId() {
         // TODO implement here
         return null;
     }
 
     /// <summary>
-    /// @param name 
+    /// @param citizenship
+    /// </summary>
+    public void setCitizenship(Country citizenship) {
+        // TODO implement here
+    }
+
+    /// <summary>
+    /// @param purpose
+    /// </summary>
+    public void setPurpose(EntryPurpose purpose) {
+        // TODO implement here
+    }
+
+    /// <summary>
+    /// @param status
+    /// </summary>
+    public void setStatus(MigrantStatus status) {
+        // TODO implement here
+    }
+
+    /// <summary>
+    /// @param entryDate
+    /// </summary>
+    public void setEntryDate(String entryDate) {
+        // TODO implement here
+    }
+
+    /// <summary>
     /// @return
     /// </summary>
-    private Country FindCountry(void name) {
+    public Country getCitizenship() {
         // TODO implement here
         return null;
     }
 
     /// <summary>
-    /// @param name 
     /// @return
     /// </summary>
-    private EntryPurpose FindPurpose(void name) {
+    public EntryPurpose getPurpose() {
         // TODO implement here
         return null;
     }
 
     /// <summary>
-    /// @param name 
     /// @return
     /// </summary>
-    private MigrantStatus FindStatus(void name) {
+    public MigrantStatus getStatus() {
+        // TODO implement here
+        return null;
+    }
+
+    /// <summary>
+    /// @return
+    /// </summary>
+    public String getEntryDate() {
         // TODO implement here
         return null;
     }

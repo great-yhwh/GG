@@ -9,21 +9,12 @@ public class MigrantStatus {
     public MigrantStatus() {
     }
 
-    public void Name;
-
-    /// <summary>
-    /// @param name 
-    /// @return
-    /// </summary>
-    public MigrantStatus Find(String name) {
-        // TODO implement here
-        return null;
-    }
+    public String name;
 
     /// <summary>
     /// @return
     /// </summary>
-    public List<MigrantStatus> GetAll() {
+    public String getName() {
         // TODO implement here
         return null;
     }

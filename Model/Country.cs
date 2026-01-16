@@ -9,21 +9,12 @@ public class Country {
     public Country() {
     }
 
-    public void Name;
-
-    /// <summary>
-    /// @param name 
-    /// @return
-    /// </summary>
-    public Country Find(String name) {
-        // TODO implement here123
-        return null;
-    }
+    public String name;
 
     /// <summary>
     /// @return
     /// </summary>
-    public List<Country> GetAll() {
+    public String getName() {
         // TODO implement here
         return null;
     }
