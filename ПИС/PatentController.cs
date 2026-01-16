@@ -11,7 +11,7 @@ public class PatentController {
 
     /// <summary>
     /// @return
-    /// </summary>
+    /// </summary>1234
     public String RequestPatentConsultation() {
         // TODO implement here
         return null;
