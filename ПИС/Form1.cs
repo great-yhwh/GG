@@ -39,7 +39,12 @@ namespace ПИС
 
         private void btnGetConsultation_Click(object sender, EventArgs e)
         {
-            // Это будет следующий этап
+            FormStart formStart = new FormStart();
+            this.Hide();
+            formStart.ShowDialog();
+            this.Close();
+
+
         }
     }
 }
