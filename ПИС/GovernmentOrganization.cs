@@ -25,8 +25,7 @@ public class GovernmentOrganization {
             this.Address = "";
         }
     }
-
-    
+ 
     /// <summary>
     /// @return
     /// </summary>

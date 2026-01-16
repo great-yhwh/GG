@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 public class GovernmentOrganizationCollection
 {
@@ -11,7 +12,6 @@ public class GovernmentOrganizationCollection
     {
         organizations = new List<GovernmentOrganization>();
 
-        
         String[] lines = File.ReadAllLines("Организации.txt");
         foreach (String line in lines)
         {
@@ -20,7 +20,6 @@ public class GovernmentOrganizationCollection
                 organizations.Add(new GovernmentOrganization(line));
             }
         }
-       
     }
 
     public List<GovernmentOrganization> getAll()

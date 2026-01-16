@@ -34,3 +34,15 @@ C:\Users\Пользователь\source\repos\GG\ПИС\GG\ПИС\obj\Debug\П�
 C:\Users\Пользователь\source\repos\GG\ПИС\GG\ПИС\obj\Debug\ПИС.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\source\repos\GG\ПИС\GG\ПИС\obj\Debug\ПИС.exe
 C:\Users\Пользователь\source\repos\GG\ПИС\GG\ПИС\obj\Debug\ПИС.pdb
+C:\Users\Пользователь\source\repos\GG2\ПИС\bin\Debug\ПИС.exe.config
+C:\Users\Пользователь\source\repos\GG2\ПИС\bin\Debug\ПИС.exe
+C:\Users\Пользователь\source\repos\GG2\ПИС\bin\Debug\ПИС.pdb
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.csproj.AssemblyReference.cache
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.exe.config
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.Form1.resources
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.FormStart.resources
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.Properties.Resources.resources
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.csproj.GenerateResource.cache
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.exe
+C:\Users\Пользователь\source\repos\GG2\ПИС\obj\Debug\ПИС.pdb

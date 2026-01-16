@@ -8,6 +8,7 @@ public class ConsultationService
     private EntryPurposeCollection purposeCollection;
     private MigrantStatusCollection statusCollection;
     private ForeignCitizenCollection foreignCitizenCollection;
+    private GovernmentOrganizationCollection governmentOrganizationCollection;
 
     // Ассоциация с правилом
     private PatentRule patentRule; 
@@ -20,6 +21,7 @@ public class ConsultationService
         purposeCollection = new EntryPurposeCollection();
         statusCollection = new MigrantStatusCollection();
         foreignCitizenCollection = new ForeignCitizenCollection();
+        governmentOrganizationCollection = new GovernmentOrganizationCollection();
 
         // Создать Правило
         patentRule = new PatentRule();
@@ -33,9 +35,20 @@ public class ConsultationService
             patentRule.AddCriteriaCountry(c);
         }
 
+        string[] targetStatus = { "Отсутствует" };
+        foreach (string name in targetStatus)
+        {
+            MigrantStatus s = statusCollection.FindStatus(name);
+            patentRule.AddCriteriaStatus(s);
+        }
+
         // Настройка цели
         EntryPurpose p = purposeCollection.FindPurpose("Работа");
         patentRule.SetCriteriaPurpose(p);
+
+        List<GovernmentOrganization> orgs = governmentOrganizationCollection.getAll();
+        patentRule.SetOrganizations(orgs);
+
     }
 
     /// <summary>
@@ -47,6 +60,7 @@ public class ConsultationService
         List<String> countries = countryCollection.getAllCountry();
         List<String> purposes = purposeCollection.getAllPurpose();
         List<String> statuses = statusCollection.getAllStatusCollection();
+        List<GovernmentOrganization> org = governmentOrganizationCollection.getAll();
 
         // Коллекция создает объект, хранит его у себя и возвращает ID
         String visitorId = foreignCitizenCollection.createForeignCitizen();

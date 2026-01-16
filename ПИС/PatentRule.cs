@@ -6,7 +6,7 @@ public class PatentRule
 
     public List<Country> criteriaCountries;
     public EntryPurpose criteriaPurpose;
-    public MigrantStatus criteriaStatus;
+    public List<MigrantStatus> criteriaStatus;
 
     public List<GovernmentOrganization> organizations;
     public String messagePatentNeed = "Вам необходимо оформить трудовой патент...";
@@ -16,6 +16,7 @@ public class PatentRule
     public PatentRule()
     {
         criteriaCountries = new List<Country>();
+        criteriaStatus = new List<MigrantStatus>();
         organizations = new List<GovernmentOrganization>();
     }
 
@@ -25,10 +26,16 @@ public class PatentRule
         if (c != null) criteriaCountries.Add(c);
     }
 
+    public void AddCriteriaStatus(MigrantStatus s)
+    {
+        if (s != null) criteriaStatus.Add(s);
+    }
+
     public void SetCriteriaPurpose(EntryPurpose p)
     {
         criteriaPurpose = p;
     }
+
 
     public void SetOrganizations(List<GovernmentOrganization> orgs)
     {
@@ -39,37 +46,39 @@ public class PatentRule
     {
         Country c = foreignCitizen.getCitizenship();
         EntryPurpose p = foreignCitizen.getPurpose();
+        MigrantStatus s = foreignCitizen.getStatus();
         String dateStr = foreignCitizen.getEntryDate();
 
         if (c == null || p == null) return "Ошибка данных";
 
         bool countryMatch = criteriaCountries.Contains(c);
         bool purposeMatch = (p == criteriaPurpose);
+        bool statusMatch = criteriaStatus.Contains(s);
 
         DateTime entryDate;
         bool dateParsed = DateTime.TryParse(dateStr, out entryDate);
         int daysPassed = dateParsed ? (DateTime.Now - entryDate).Days : 0;
 
-        if (countryMatch && purposeMatch)
+        if (countryMatch && purposeMatch && statusMatch)
         {
 
             String result = messagePatentNeed;
 
             if (daysPassed > criteriaDateDays)
             {
-                result += "\nВНИМАНИЕ: Срок в 30 дней истек! Возможен штраф.";
+                result += Environment.NewLine + "ВНИМАНИЕ: Срок в 30 дней истек! Возможен штраф.";
             }
             else
             {
-                result += "\nОсталось дней на подачу: " + (criteriaDateDays - daysPassed);
+                result += Environment.NewLine + "Осталось дней на подачу: " + (criteriaDateDays - daysPassed);
             }
 
             if (organizations.Count > 0)
             {
-                result += "\n\nКуда обратиться:";
+                result += Environment.NewLine + Environment.NewLine + "Куда обратиться:";
                 foreach (GovernmentOrganization org in organizations)
                 {
-                    result += "\n- " + org.getFullInfo();
+                    result += Environment.NewLine + " - " + org.getFullInfo();
                 }
             }
 
