@@ -1,22 +1,16 @@
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class MigrantStatus {
+public class MigrantStatus
+{
+    private String name;
 
-    public MigrantStatus() {
+    public MigrantStatus(String name)
+    {
+        this.name = name;
     }
 
-    public String name;
-
-    /// <summary>
-    /// @return
-    /// </summary>
-    public String getName() {
-        // TODO implement here
-        return null;
+    public String getName()
+    {
+        return this.name;
     }
-
 }

@@ -11,15 +11,15 @@ public class PatentRule {
 
     public List<Country> criteriaCountries;
 
-    public void criteriaPurpose;
+    public EntryPurpose criteriaPurpose;
 
-    public void criteriaStatus;
+    public MigrantStatus criteriaStatus;
 
     public String messagePatentNeed;
 
     public String messagePatentNoNeed;
 
-    public Integer criteriaDate;
+    public int criteriaDate;
 
     /// <summary>
     /// @param foreignCitizen 

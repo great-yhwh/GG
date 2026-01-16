@@ -1,29 +1,40 @@
-
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 
-public class CountryCollection {
+public class CountryCollection
+{
+    private List<Country> countries;
 
-    public CountryCollection() {
+    public CountryCollection()
+    {
+        // При создании коллекции читаем файл и создаем объекты
+        countries = new List<Country>();
+        if (File.Exists("Гражданства.txt"))
+        {
+            String[] lines = File.ReadAllLines("Гражданства.txt");
+            foreach (String line in lines)
+            {
+                countries.Add(new Country(line));
+            }
+        }
     }
 
-    /// <summary>
-    /// @return
-    /// </summary>
-    public String getAllCountry() {
-        // TODO implement here
-        return null;
+    // Возвращаем список строк для UI
+    public List<String> getAllCountry()
+    {
+        List<String> result = new List<String>();
+        foreach (Country c in countries)
+        {
+            result.Add(c.getName());
+        }
+        return result;
     }
 
-    /// <summary>
-    /// @param citizenshipStr 
-    /// @return
-    /// </summary>
-    public Country FindCitizenship(String citizenshipStr) {
-        // TODO implement here
-        return null;
+    public Country FindCitizenship(String citizenshipStr)
+    {
+        
+        return null; // позже
     }
-
 }

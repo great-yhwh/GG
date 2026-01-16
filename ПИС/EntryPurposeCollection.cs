@@ -1,29 +1,36 @@
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 
-public class EntryPurposeCollection {
+public class EntryPurposeCollection
+{
+    private List<EntryPurpose> purposes;
 
-    public EntryPurposeCollection() {
+    public EntryPurposeCollection()
+    {
+        purposes = new List<EntryPurpose>();
+        if (File.Exists("ÖוכüÂתוחהא.txt"))
+        {
+            String[] lines = File.ReadAllLines("ÖוכüÂתוחהא.txt");
+            foreach (String line in lines)
+            {
+                purposes.Add(new EntryPurpose(line));
+            }
+        }
     }
 
-    /// <summary>
-    /// @return
-    /// </summary>
-    public String getAllPurpose() {
-        // TODO implement here
-        return null;
+    public List<String> getAllPurpose()
+    {
+        List<String> result = new List<String>();
+        foreach (EntryPurpose p in purposes)
+        {
+            result.Add(p.getName());
+        }
+        return result;
     }
 
-    /// <summary>
-    /// @param purposeStr 
-    /// @return
-    /// </summary>
-    public EntryPurpose FindPurpose(String purposeStr) {
-        // TODO implement here
-        return null;
+    public EntryPurpose FindPurpose(String purposeStr)
+    {
+        return null; // ןמחזו
     }
-
 }

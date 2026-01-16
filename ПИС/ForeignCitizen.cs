@@ -1,84 +1,93 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class ForeignCitizen {
+public class ForeignCitizen
+{
 
-    public ForeignCitizen() {
-    }
-
+    // Публичные поля (как в вашем скелете)
     public String id;
-
     public String entryDate;
+
+    // Приватные поля для хранения объектов (ассоциации)
+    private Country citizenship;
+    private EntryPurpose purpose;
+    private MigrantStatus status;
+
+    public ForeignCitizen()
+    {
+    }
 
     /// <summary>
     /// @return
     /// </summary>
-    public String getId() {
-        // TODO implement here
-        return null;
+    public String getId()
+    {
+        return this.id;
     }
 
     /// <summary>
     /// @param citizenship
     /// </summary>
-    public void setCitizenship(Country citizenship) {
-        // TODO implement here
+    public void setCitizenship(Country citizenship)
+    {
+        this.citizenship = citizenship;
     }
 
     /// <summary>
     /// @param purpose
     /// </summary>
-    public void setPurpose(EntryPurpose purpose) {
-        // TODO implement here
+    public void setPurpose(EntryPurpose purpose)
+    {
+        this.purpose = purpose;
     }
 
     /// <summary>
     /// @param status
     /// </summary>
-    public void setStatus(MigrantStatus status) {
-        // TODO implement here
+    public void setStatus(MigrantStatus status)
+    {
+        this.status = status;
     }
 
     /// <summary>
     /// @param entryDate
     /// </summary>
-    public void setEntryDate(String entryDate) {
-        // TODO implement here
+    public void setEntryDate(String entryDate)
+    {
+        this.entryDate = entryDate;
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public Country getCitizenship() {
-        // TODO implement here
-        return null;
+    public Country getCitizenship()
+    {
+        return this.citizenship;
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public EntryPurpose getPurpose() {
-        // TODO implement here
-        return null;
+    public EntryPurpose getPurpose()
+    {
+        return this.purpose;
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public MigrantStatus getStatus() {
-        // TODO implement here
-        return null;
+    public MigrantStatus getStatus()
+    {
+        return this.status;
     }
 
     /// <summary>
     /// @return
     /// </summary>
-    public String getEntryDate() {
-        // TODO implement here
-        return null;
+    public String getEntryDate()
+    {
+        return this.entryDate;
     }
-
 }
