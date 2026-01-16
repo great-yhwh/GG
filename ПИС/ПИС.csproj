@@ -67,6 +67,7 @@
       <DependentUpon>FormStart.cs</DependentUpon>
     </Compile>
     <Compile Include="GovernmentOrganization.cs" />
+    <Compile Include="GovernmentOrganizationCollection.cs" />
     <Compile Include="MigrantStatus.cs" />
     <Compile Include="MigrantStatusCollection.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />

@@ -20,27 +20,24 @@ public class ForeignCitizenCollection
     /// </summary>
     public String createForeignCitizen()
     {
-        // 1. Создаем объект
+        // Создать объект Иностранного гражданина
         ForeignCitizen newCitizen = new ForeignCitizen();
 
-        // 2. Генерируем уникальный ID
+        // Присвоить Айди
         string newId = Guid.NewGuid().ToString();
         newCitizen.id = newId;
 
-        // 3. Сохраняем в коллекцию
+        // Сохранить
         citizens.Add(newCitizen);
 
         // 4. Возвращаем ID, чтобы Сервис передал его Контроллеру -> Форме
         return newId;
     }
 
-    /// <summary>
-    /// Находит гражданина по ID и заполняет его данными.
-    /// Это реализация шагов 11-17 из диаграммы коммуникации.
-    /// </summary>
+    
     public ForeignCitizen GetCitizen(Country citizenship, EntryPurpose purpose, MigrantStatus status, String entryDate, String visitorId)
     {
-        // 1. Ищем гражданина (вызов внутреннего метода)
+        // Поиск гражданина; вызов внутреннего метода
         ForeignCitizen foundCitizen = getByVisitorId(visitorId);
 
         if (foundCitizen == null)
@@ -53,15 +50,10 @@ public class ForeignCitizenCollection
         foundCitizen.setStatus(status);
         foundCitizen.setEntryDate(entryDate);
 
-        // 3. Возвращаем заполненного гражданина
+        // Заполненный гражданин
         return foundCitizen;
     }
 
-    /// <summary>
-    /// Внутренний поиск (имитация запроса к БД: SELECT * FROM citizens WHERE id = visitorId)
-    /// @param visitorId 
-    /// @return
-    /// </summary>
     public ForeignCitizen getByVisitorId(String visitorId)
     {
         foreach (ForeignCitizen fc in citizens)

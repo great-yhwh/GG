@@ -20,7 +20,7 @@ public class CountryCollection
         }
     }
 
-    // Возвращаем список строк для UI
+    // Возвращается список строк для вьюшки
     public List<String> getAllCountry()
     {
         List<String> result = new List<String>();

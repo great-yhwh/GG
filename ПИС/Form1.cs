@@ -7,23 +7,19 @@ namespace ПИС
 {
     public partial class Form1 : Form
     {
-        // Ассоциация с контроллером
         private PatentController controller;
         private String currentVisitorId;
 
         public Form1()
         {
             InitializeComponent();
-            controller = new PatentController(); // Создаем контроллер
+            controller = new PatentController(); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // 1. Запрашиваем данные у контроллера
             Dictionary<string, List<string>> data = controller.RequestPatentConsultation();
 
-            // 2. Заполняем ComboBox полученными списками
-            // (Ключи "purposes", "countries", "statuses" мы задали в Сервисе)
 
             if (data.ContainsKey("purposes"))
                 comboBox1.Items.AddRange(data["purposes"].ToArray());
@@ -42,24 +38,20 @@ namespace ПИС
 
         private void btnGetConsultation_Click(object sender, EventArgs e)
         {
-            // 1. Считываем данные с формы
             string country = comboBox2.Text;
             string purpose = comboBox1.Text;
             string status = comboBox3.Text;
-            string date = dateTimePicker1.Text; // Предположим, что для даты у вас TextBox1
+            string date = dateTimePicker1.Text;
 
-            // Простая валидация
             if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(purpose))
             {
                 MessageBox.Show("Пожалуйста, выберите страну и цель въезда.");
                 return;
             }
 
-            // 2. Вызываем контроллер для получения сообщения
             string message = controller.createPatentMessage(country, purpose, status, date, currentVisitorId);
 
-            // 3. Открываем вторую форму и передаем туда сообщение
-            FormStart formStart = new FormStart(message); // Передаем сообщение в конструктор
+            FormStart formStart = new FormStart(message); 
 
             this.Hide();
             formStart.ShowDialog();
