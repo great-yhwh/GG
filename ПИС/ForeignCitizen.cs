@@ -4,8 +4,8 @@ public class ForeignCitizen
 {
 
     // Публичные поля
-    private String id;
-    private String entryDate;
+    public String id;
+    public String entryDate;
 
     // Приватные поля для хранения объектов по ассоциациам
     private Country citizenship;
