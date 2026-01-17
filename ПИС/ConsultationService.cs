@@ -27,14 +27,14 @@ public class ConsultationService
         patentRule = new PatentRule();
 
         // НАСТРАЙКА ПРАВИЛА (Service берет объекты из Collection и кладет в Rule)
-
+        // COUNTRY
         string[] targetCountries = { "Азербайджан", "Таджикистан", "Узбекистан", "Молдова", "Украина" };
         foreach (string name in targetCountries)
         {
             Country c = countryCollection.FindCitizenship(name);
             patentRule.AddCriteriaCountry(c);
         }
-
+        //MIGRANT STATUS
         string[] targetStatus = { "Отсутствует" };
         foreach (string name in targetStatus)
         {
@@ -42,7 +42,7 @@ public class ConsultationService
             patentRule.AddCriteriaStatus(s);
         }
 
-        // Настройка цели
+        // PURPOSE
         EntryPurpose p = purposeCollection.FindPurpose("Работа");
         patentRule.SetCriteriaPurpose(p);
 
@@ -51,9 +51,7 @@ public class ConsultationService
 
     }
 
-    /// <summary>
-    /// Возвращает словарь, где ключ - название списка, значение - список строк
-    /// </summary>
+    // Возвращает словарь, где ключ - название списка, значение - список строк
     public Dictionary<string, List<string>> RequestPatentConsultation()
     {
         // Получение списков стран, целей, статусов

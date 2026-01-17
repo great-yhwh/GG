@@ -1,16 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 public class ForeignCitizen
 {
 
-    // Публичные поля (как в вашем скелете)
+    // Публичные поля
     public String id;
     public String entryDate;
 
-    // Приватные поля для хранения объектов (ассоциации)
+    // Приватные поля для хранения объектов по ассоциациам
     private Country citizenship;
     private EntryPurpose purpose;
     private MigrantStatus status;

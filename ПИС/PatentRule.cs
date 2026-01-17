@@ -9,8 +9,8 @@ public class PatentRule
     public List<MigrantStatus> criteriaStatus;
 
     public List<GovernmentOrganization> organizations;
-    public String messagePatentNeed = "Вам необходимо оформить трудовой патент...";
-    public String messagePatentNoNeed = "Вам НЕ требуется патент...";
+    public String messagePatentNeed = "Вам необходимо оформить трудовой патент";
+    public String messagePatentNoNeed = "Вам НЕ требуется патент";
     public int criteriaDateDays = 30;
 
     public PatentRule()

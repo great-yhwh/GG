@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 public class GovernmentOrganizationCollection
 {
-
+    // По ассоциации
     private List<GovernmentOrganization> organizations;
 
     public GovernmentOrganizationCollection()

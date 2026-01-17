@@ -6,7 +6,7 @@ using System.Text;
 public class ForeignCitizenCollection
 {
 
-    // Список для хранения всех созданных граждан
+    // Список хранения всех созданных граждан
     private List<ForeignCitizen> citizens;
 
     public ForeignCitizenCollection()
@@ -14,8 +14,8 @@ public class ForeignCitizenCollection
         citizens = new List<ForeignCitizen>();
     }
 
+    // Создает нового гражданина, присваивает ID и сохраняет в список.
     /// <summary>
-    /// Создает нового гражданина, присваивает ID и сохраняет в список.
     /// @return visitorId
     /// </summary>
     public String createForeignCitizen()
@@ -30,7 +30,7 @@ public class ForeignCitizenCollection
         // Сохранить
         citizens.Add(newCitizen);
 
-        // 4. Возвращаем ID, чтобы Сервис передал его Контроллеру -> Форме
+        // Возвращаем ID, чтобы Сервис передал его Контроллеру, а он вьюшке
         return newId;
     }
 

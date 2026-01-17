@@ -1,29 +1,15 @@
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Xml.Linq;
 
 public class GovernmentOrganization {
 
-    public String Name;
-
-    public String Address;
+    private String Name;
+    private String Address;
 
     public GovernmentOrganization(String rawLine) {
-        if (rawLine.Contains(";"))
-        {
-            String[] parts = rawLine.Split(';');
-            this.Name = parts[0].Trim();
-            this.Address = parts[1].Trim();
-        }
-        else
-        {
-            this.Name = rawLine;
-            this.Address = "";
-        }
+        String[] parts = rawLine.Split(';');
+        this.Name = parts[0].Trim();
+        this.Address = parts[1].Trim();
     }
  
     /// <summary>
