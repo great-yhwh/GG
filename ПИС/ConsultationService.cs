@@ -26,7 +26,7 @@ public class ConsultationService
         // Создать Правило
         patentRule = new PatentRule();
 
-        // НАСТРАЙКА ПРАВИЛА (Service берет объекты из Collection и кладет в Rule)
+        // НАСТРАЙКА ПРАВИЛА
         // COUNTRY
         string[] targetCountries = { "Азербайджан", "Таджикистан", "Узбекистан", "Молдова", "Украина" };
         foreach (string name in targetCountries)
@@ -52,7 +52,7 @@ public class ConsultationService
     }
 
     // Возвращает словарь, где ключ - название списка, значение - список строк
-    public Dictionary<string, List<string>> RequestPatentConsultation()
+    public Dictionary<String, List<String>> RequestPatentConsultation()
     {
         // Получение списков стран, целей, статусов
         List<String> countries = countryCollection.getAllCountry();
