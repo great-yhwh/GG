@@ -61,18 +61,25 @@ namespace PIS_6sem
                 orgAddresses = orgAddresses.Take(minCount).ToList();
             }
 
-            Console.Write("Введите количество дней (целое число, например 90): ");
-            if (!int.TryParse(Console.ReadLine(), out int days))
+            var dayOptions = new List<string>{ "90", "30", "15", "7"};
+
+            string selectedDays = ChooseFromList("Выберите количество дней:", dayOptions, allowCustom: true);
+
+            int days;
+
+            while (!int.TryParse(selectedDays, out days) || days < 0)
             {
-                Console.WriteLine("Некорректный ввод, установлено значение 0");
-                days = 0;
+                Console.WriteLine("Введите корректное положительное число.");
+
+                Console.Write("Количество дней: ");
+                selectedDays = Console.ReadLine() ?? "";
             }
 
-            Console.Write("Введите цель (например, Работа): ");
-            string purpose = Console.ReadLine()?.Trim() ?? "";
+            var purposes = new List<string> {"Работа", "Учёба", "Туризм", "Частная", "Иная"};
+            string purpose = ChooseFromList("Выберите цель приезда:", purposes);
 
-            Console.Write("Введите гражданство (например, Узбекистан): ");
-            string citizenship = Console.ReadLine()?.Trim() ?? "";
+            var citizenships = new List<string>{"Азербайджан","Таджикистан","Узбекистан","Молдова","Украина"};
+            string citizenship = ChooseFromList("Выберите гражданство:", citizenships, allowCustom: true);
 
             // Создание правила через сервис
             Console.WriteLine("\nСоздаём правило...");
@@ -141,6 +148,42 @@ namespace PIS_6sem
 
             Console.WriteLine("\nГотово! Нажмите любую клавишу для выхода...");
             Console.ReadKey();
+        }
+
+        static string ChooseFromList(string title, List<string> options, bool allowCustom = false)
+        {
+            Console.WriteLine($"\n{title}");
+
+            for (int i = 0; i < options.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
+
+            if (allowCustom)
+            {
+                Console.WriteLine($"{options.Count + 1}. Другое (ввести вручную)");
+            }
+
+            while (true)
+            {
+                Console.Write("Выберите номер: ");
+
+                if (int.TryParse(Console.ReadLine(), out int choice))
+                {
+                    if (choice >= 1 && choice <= options.Count)
+                    {
+                        return options[choice - 1];
+                    }
+
+                    if (allowCustom && choice == options.Count + 1)
+                    {
+                        Console.Write("Введите своё значение: ");
+                        return Console.ReadLine()?.Trim() ?? "";
+                    }
+                }
+
+                Console.WriteLine("Некорректный ввод. Повторите.");
+            }
         }
     }
 }
