@@ -14,6 +14,7 @@ namespace PIS_6sem.Services
             int days,
             string purpose,
             string citizenship,
+            string status,
             RuleBuilder ruleBuilder,
             ProfileFactory profileFactory)
         {
@@ -34,8 +35,8 @@ namespace PIS_6sem.Services
                 days,
                 purpose,
                 citizenship,
-                new List<string> { "Срок", "Цель", "Гражданство" },
-                new List<string> { days.ToString(), purpose, citizenship }
+                new List<string> { "Срок", "Цель", "Гражданство" , "Статус"},
+                new List<string> { days.ToString(), purpose, citizenship, status }
             );
 
             // Шаг 19: добавление профиля в builder

@@ -81,6 +81,15 @@ namespace PIS_6sem
             var citizenships = new List<string>{"Азербайджан","Таджикистан","Узбекистан","Молдова","Украина"};
             string citizenship = ChooseFromList("Выберите гражданство:", citizenships, allowCustom: true);
 
+            var statuses = new List<string>
+            {
+                "Статус отсутствует",
+                "Высококвалифицированный специалист или член его(её) семьи",
+                "Участник гос программы переселения соотечественников или член его(её) семьи"
+            };
+
+            string status = ChooseFromList("Выберите статус:", statuses, allowCustom: true);
+
             // Создание правила через сервис
             Console.WriteLine("\nСоздаём правило...");
             var rule = serviceRule.CreateRule(
@@ -92,7 +101,8 @@ namespace PIS_6sem
                 orgAddresses: orgAddresses,
                 days: days,
                 purpose: purpose,
-                citizenship: citizenship
+                citizenship: citizenship,
+                status: status
             );
 
             // результата

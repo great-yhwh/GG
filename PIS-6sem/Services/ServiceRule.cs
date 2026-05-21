@@ -23,7 +23,8 @@ namespace PIS_6sem.Services
             List<string> orgAddresses,
             int days,
             string purpose,
-            string citizenship)
+            string citizenship,
+            string status)
         {
             // ===== ФАЗА 1: Создание объекта в памяти =====
             // (Диаграмма последовательности операций, шаги 2-37)
@@ -39,7 +40,7 @@ namespace PIS_6sem.Services
                 ruleName, targetDocs,
                 guidanceDescription, refusal,
                 orgNames, orgAddresses,
-                days, purpose, citizenship,
+                days, purpose, citizenship, status,
                 ruleBuilder, profileFactory);
 
             // ===== ФАЗА 2: Сохранение в БД =====
