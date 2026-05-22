@@ -13,84 +13,103 @@ namespace PIS_6sem
             var db = new RuleDbContext();
             db.Database.EnsureCreated();
 
-            var unitOfWork = new UnitOfWork(db);
+            var uow = new UnitOfWork(db);
             var director = new RuleDirector();
-            var serviceRule = new ServiceRule(unitOfWork, director);
+            var serviceRule = new ServiceRule(uow, director);
 
-            // Ввод данных
             Console.WriteLine("Создание нового правила!");
 
-            Console.Write("Введите название правила (например, Рабочая виза): ");
-            string ruleName = Console.ReadLine()?.Trim();
-            while (string.IsNullOrWhiteSpace(ruleName))
-            {
-                Console.Write("Название не может быть пустым. Повторите ввод: ");
-                ruleName = Console.ReadLine()?.Trim();
-            }
+            string ruleName = ReadRequired("Введите название правила: ");
 
-            Console.WriteLine("Введите целевые документы (через запятую, например: " +
-                "Разрешение на работу, Рабочая виза): ");
-            string docsInput = Console.ReadLine() ?? "";
-            var targetDocs = docsInput.Split(',', StringSplitOptions.TrimEntries 
-                | StringSplitOptions.RemoveEmptyEntries).ToList();
+            Console.WriteLine("Введите целевые документы (через запятую): ");
+            var targetDocs = ReadCommaSeparatedList();
 
-            Console.Write("Введите описание руководства (например: Обратитесь в миграционную службу): ");
-            string guidanceDescription = Console.ReadLine()?.Trim() ?? "";
+            string guidanceDescription = ReadRequired("Введите описание руководства: ");
+            string refusal = ReadOptional("Введите описание отказа: ");
 
-            Console.Write("Введите описание отказа (например: Отказ при неполном пакете документов): ");
-            string refusal = Console.ReadLine()?.Trim() ?? "";
+            Console.WriteLine("Введите названия организаций (через запятую): ");
+            var orgNames = ReadCommaSeparatedList();
 
-            Console.WriteLine("Введите названия организаций (через запятую, например: МВД, МФЦ): ");
-            string orgNamesInput = Console.ReadLine() ?? "";
-            var orgNames = orgNamesInput.Split(',', StringSplitOptions.TrimEntries 
-                | StringSplitOptions.RemoveEmptyEntries).ToList();
+            Console.WriteLine("Введите адреса организаций (в том же порядке, через запятую): ");
+            var orgAddresses = ReadCommaSeparatedList();
 
-            Console.WriteLine("Введите адреса организаций (в том же порядке, через запятую, " +
-                "например: ул. Ленина, 1, ул. Мира, 5): ");
-            string orgAddressesInput = Console.ReadLine() ?? "";
-            var orgAddresses = orgAddressesInput.Split(',', StringSplitOptions.TrimEntries 
-                | StringSplitOptions.RemoveEmptyEntries).ToList();
-
-            // Проверка, что количество названий и адресов совпадает
             if (orgNames.Count != orgAddresses.Count)
             {
-                Console.WriteLine("Внимание: количество названий организаций" +
-                    " не совпадает с количеством адресов. Будет использовано минимальное число.");
+                Console.WriteLine("Внимание: количество названий организаций не совпадает с количеством адресов.");
                 int minCount = Math.Min(orgNames.Count, orgAddresses.Count);
                 orgNames = orgNames.Take(minCount).ToList();
                 orgAddresses = orgAddresses.Take(minCount).ToList();
             }
 
-            var dayOptions = new List<string>{ "90", "30", "15", "7"};
-
-            string selectedDays = ChooseFromList("Выберите количество дней:", dayOptions, allowCustom: true);
-
-            int days;
-
-            while (!int.TryParse(selectedDays, out days) || days < 0)
+            var dayOptions = new List<string> { "90", "30", "15", "7" };
+            var purposeOptions = new List<string> { "Работа", "Учёба", "Туризм", "Частная", "Иная" };
+            var citizenshipOptions = new List<string>
             {
-                Console.WriteLine("Введите корректное положительное число.");
-
-                Console.Write("Количество дней: ");
-                selectedDays = Console.ReadLine() ?? "";
-            }
-
-            var purposes = new List<string> {"Работа", "Учёба", "Туризм", "Частная", "Иная"};
-            string purpose = ChooseFromList("Выберите цель приезда:", purposes);
-
-            var citizenships = new List<string>{"Азербайджан","Таджикистан","Узбекистан","Молдова","Украина"};
-            string citizenship = ChooseFromList("Выберите гражданство:", citizenships, allowCustom: true);
-
-            var statuses = new List<string>
+                "Азербайджан", "Таджикистан", "Узбекистан", "Молдова", "Украина",
+                "Белоруссия", "Киргизия", "Казахстан", "Армения",
+                "Все остальные иностранные граждане"
+            };
+            var statusOptions = new List<string>
             {
                 "Статус отсутствует",
                 "Высококвалифицированный специалист или член его(её) семьи",
                 "Участник гос программы переселения соотечественников или член его(её) семьи"
             };
 
-            string status = ChooseFromList("Выберите статус:", statuses, allowCustom: true);
+            var daysList = new List<int>();
+            var purposes = new List<string>();
+            var citizenships = new List<string>();
+            var propertyNames = new List<List<string>>();
+            var propertyValues = new List<List<string>>();
 
-            // Создание правила через сервис
+            Console.WriteLine("\nВвод профилей");
+
+            int profileNumber = 1;
+            do
+            {
+                Console.WriteLine($"\n Профиль #{profileNumber}");
+
+                string selectedDays = ChooseFromList("Выберите количество дней:", dayOptions, allowCustom: true);
+                int days;
+                while (!int.TryParse(selectedDays, out days) || days < 0)
+                {
+                    Console.WriteLine("Введите корректное положительное число.");
+                    Console.Write("Количество дней: ");
+                    selectedDays = Console.ReadLine() ?? "";
+                }
+
+                string purpose = ChooseFromList("Выберите цель приезда:", purposeOptions, allowCustom: true);
+                string citizenship = ChooseFromList("Выберите гражданство:", citizenshipOptions, allowCustom: true);
+                string status = ChooseFromList("Выберите статус:", statusOptions, allowCustom: true);
+
+                var currentPropertyNames = new List<string>();
+                var currentPropertyValues = new List<string>();
+
+                if (!string.Equals(status, "Статус отсутствует", StringComparison.OrdinalIgnoreCase))
+                {
+                    currentPropertyNames.Add("Статус");
+                    currentPropertyValues.Add(status);
+                }
+
+                while (AskYesNo("Добавить ещё свойство профиля?"))
+                {
+                    string propertyName = ReadRequired("Название свойства: ");
+                    string propertyValue = ReadRequired("Значение свойства: ");
+
+                    currentPropertyNames.Add(propertyName);
+                    currentPropertyValues.Add(propertyValue);
+                }
+
+                daysList.Add(days);
+                purposes.Add(purpose);
+                citizenships.Add(citizenship);
+                propertyNames.Add(currentPropertyNames);
+                propertyValues.Add(currentPropertyValues);
+
+                profileNumber++;
+            }
+            while (AskYesNo("Добавить ещё один профиль?"));
+
             Console.WriteLine("\nСоздаём правило...");
             var rule = serviceRule.CreateRule(
                 ruleName: ruleName,
@@ -99,38 +118,46 @@ namespace PIS_6sem
                 refusal: refusal,
                 orgNames: orgNames,
                 orgAddresses: orgAddresses,
-                days: days,
-                purpose: purpose,
-                citizenship: citizenship,
-                status: status
+                daysList: daysList,
+                purposes: purposes,
+                citizenships: citizenships,
+                propertyNames: propertyNames,
+                propertyValues: propertyValues
             );
 
-            // результата
             Console.WriteLine("\nПравило создано и сохранено в БД!");
             Console.WriteLine($"ID: {rule.Id}");
             Console.WriteLine($"Наименование: {rule.Name}");
 
-            Console.WriteLine("\nПрофили");
+            Console.WriteLine("\nПрофили:");
             foreach (var profile in rule.Profiles)
             {
                 Console.WriteLine($"  ID: {profile.Id}");
                 Console.WriteLine($"  Дни: {profile.Days}");
                 Console.WriteLine($"  Цель визита: {profile.Purpose}");
                 Console.WriteLine($"  Гражданство: {profile.Citizenship}");
-                Console.WriteLine("  Доп сведения:");
-                foreach (var prop in profile.Properties)
+                Console.WriteLine("  Свойства профиля:");
+
+                if (profile.Properties.Count == 0)
                 {
-                    Console.WriteLine($"    {prop.Name} = {prop.Value}");
+                    Console.WriteLine("    нет");
+                }
+                else
+                {
+                    foreach (var prop in profile.Properties)
+                    {
+                        Console.WriteLine($"    {prop.Name} = {prop.Value}");
+                    }
                 }
             }
 
-            Console.WriteLine("\nЦелевые документы");
+            Console.WriteLine("\nЦелевые документы:");
             foreach (var doc in rule.TargetDocuments)
             {
                 Console.WriteLine($"  {doc.Name}");
             }
 
-            Console.WriteLine("\nРуководство");
+            Console.WriteLine("\nРуководство:");
             if (rule.Guidance != null)
             {
                 Console.WriteLine($"  Описание: {rule.Guidance.Description}");
@@ -142,7 +169,6 @@ namespace PIS_6sem
                 }
             }
 
-            // --- Проверка чтения из БД ---
             Console.WriteLine("\nПроверка: читаем из БД заново");
             using var db2 = new RuleDbContext();
             var uow2 = new UnitOfWork(db2);
@@ -158,6 +184,51 @@ namespace PIS_6sem
 
             Console.WriteLine("\nГотово! Нажмите любую клавишу для выхода...");
             Console.ReadKey();
+        }
+
+        static string ReadRequired(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string? value = Console.ReadLine()?.Trim();
+
+                if (!string.IsNullOrWhiteSpace(value))
+                    return value;
+
+                Console.WriteLine("Значение не может быть пустым. Повторите ввод.");
+            }
+        }
+
+        static string ReadOptional(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine()?.Trim() ?? "";
+        }
+
+        static List<string> ReadCommaSeparatedList()
+        {
+            string input = Console.ReadLine() ?? "";
+            return input
+                .Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+        }
+
+        static bool AskYesNo(string prompt)
+        {
+            while (true)
+            {
+                Console.Write($"{prompt} (д/н): ");
+                string? answer = Console.ReadLine()?.Trim().ToLower();
+
+                if (answer == "д" || answer == "да")
+                    return true;
+
+                if (answer == "н" || answer == "нет")
+                    return false;
+
+                Console.WriteLine("Введите 'д' или 'н'.");
+            }
         }
 
         static string ChooseFromList(string title, List<string> options, bool allowCustom = false)

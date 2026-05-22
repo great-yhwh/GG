@@ -11,15 +11,17 @@ namespace PIS_6sem.Services
             List<string> propertyNames,
             List<string> propertyValues)
         {
-            // Шаг 9: создаем Profile
+            if (propertyNames.Count != propertyValues.Count)
+            {
+                throw new ArgumentException("Количество имён свойств и значений свойств не совпадает.");
+            }
+
             var profile = new Profile();
 
-            // Шаг 10-12: устанавливаем свойства
             profile.SetDays(days);
             profile.SetPurpose(purpose);
             profile.SetCitizenship(citizenship);
 
-            // Шаг 13-16: создаем и добавляем свойства профиля
             for (int i = 0; i < propertyNames.Count; i++)
             {
                 var property = new ProfileProperty();
@@ -27,7 +29,6 @@ namespace PIS_6sem.Services
                 profile.AddProperty(property);
             }
 
-            // Шаг 17-18: возвращаем готовый профиль
             return profile;
         }
     }
