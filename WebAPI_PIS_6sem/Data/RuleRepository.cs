@@ -23,7 +23,7 @@ namespace WebAPI_PIS_6sem.Data
                 .Include(r => r.Profiles)
                     .ThenInclude(p => p.Properties)
                 .Include(r => r.TargetDocuments)
-                .Include(r => r.Guidance)
+                .Include(r => r.Guidance!)
                     .ThenInclude(g => g.Organizations)
                 .FirstOrDefault(r => r.Id == id);
         }

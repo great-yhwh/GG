@@ -5,7 +5,6 @@ namespace WebAPI_PIS_6sem.Data
 {
     public class RuleDbContext : DbContext
     {
-        // Добавьте этот конструктор
         public RuleDbContext(DbContextOptions<RuleDbContext> options) : base(options)
         {
         }

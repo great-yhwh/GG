@@ -1,23 +1,43 @@
-@WebAPI_PIS_6sem_HostAddress = http://localhost:5283
+@host = http://localhost:5283
 
 ### Создать правило
-POST {{WebAPI_PIS_6sem_HostAddress}}/api/rules
+POST {{host}}/api/rules
 Content-Type: application/json
 
 {
-  "ruleName": "Тест",
-  "targetDocs": ["doc1"],
-  "guidanceDescription": "описание",
-  "refusal": "нет",
-  "orgNames": ["Организация 1"],
-  "orgAddresses": ["Адрес 1"],
-  "daysList": [30],
-  "purposeNamesList": [["туризм"]],
-  "citizenshipNamesList": [["Россия"]],
-  "propertyNames": [[]],
-  "propertyValues": [[]]
+  "ruleName": "Постановка на миграционный учет",
+  "targetDocs": ["Документ, подтверждающий постановку на миграционный учет"],
+  "guidanceDescription": "Обратитесь к лицу, у которого проживаете",
+  "refusal": "",
+  "orgNames": ["УМВД"],
+  "orgAddresses": ["через портал госуслуг"],
+  "daysList": [90, 30, 15, 7],
+  "purposeNamesList": [
+    ["Работа", "Учёба"],
+    ["Работа"],
+    ["Работа"],
+    ["Работа"]
+  ],
+  "citizenshipNamesList": [
+    ["Белоруссия", "Украина"],
+    ["Киргизия", "Казахстан", "Армения"],
+    ["Таджикистан", "Узбекистан"],
+    ["Все остальные"]
+  ],
+  "propertyNames": [
+    [],
+    ["Дополнительное условие"],
+    [],
+    []
+  ],
+  "propertyValues": [
+    [],
+    ["ранее уже состоял на миграционном учёте"],
+    [],
+    []
+  ]
 }
 
-### Получить правило по ID (пример, если добавите GET-метод)
-# GET {{WebAPI_PIS_6sem_HostAddress}}/api/rules/1
-# Accept: application/json
+### Получить правило по ID
+GET {{host}}/api/rules/1
+Accept: application/json
