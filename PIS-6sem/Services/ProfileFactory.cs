@@ -6,27 +6,38 @@ namespace PIS_6sem.Services
     {
         public Profile CreateProfile(
             int days,
-            string purpose,
-            string citizenship,
+            List<string> purposeNames,
+            List<string> citizenshipNames,
             List<string> propertyNames,
             List<string> propertyValues)
         {
-            if (propertyNames.Count != propertyValues.Count)
+            var profile = new Profile { Days = days };
+
+            foreach (var purpose in purposeNames)
             {
-                throw new ArgumentException("Количество имён свойств и значений свойств не совпадает.");
+                profile.Properties.Add(new ProfileProperty
+                {
+                    Name = "Цель въезда",
+                    Value = purpose
+                });
             }
 
-            var profile = new Profile();
-
-            profile.SetDays(days);
-            profile.SetPurpose(purpose);
-            profile.SetCitizenship(citizenship);
+            foreach (var citizenship in citizenshipNames)
+            {
+                profile.Properties.Add(new ProfileProperty
+                {
+                    Name = "Гражданство",
+                    Value = citizenship
+                });
+            }
 
             for (int i = 0; i < propertyNames.Count; i++)
             {
-                var property = new ProfileProperty();
-                property.SetProperty(propertyNames[i], propertyValues[i]);
-                profile.AddProperty(property);
+                profile.Properties.Add(new ProfileProperty
+                {
+                    Name = propertyNames[i],
+                    Value = propertyValues[i]
+                });
             }
 
             return profile;

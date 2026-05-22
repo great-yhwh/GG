@@ -22,8 +22,8 @@ namespace PIS_6sem.Services
             List<string> orgNames,
             List<string> orgAddresses,
             List<int> daysList,
-            List<string> purposes,
-            List<string> citizenships,
+            List<List<string>> purposeNamesList,
+            List<List<string>> citizenshipNamesList,
             List<List<string>> propertyNames,
             List<List<string>> propertyValues)
         {
@@ -31,19 +31,12 @@ namespace PIS_6sem.Services
             var profileFactory = new ProfileFactory();
 
             var rule = _director.Construct(
-                ruleName,
-                targetDocs,
-                guidanceDescription,
-                refusal,
-                orgNames,
-                orgAddresses,
-                daysList,
-                purposes,
-                citizenships,
-                propertyNames,
-                propertyValues,
-                ruleBuilder,
-                profileFactory);
+                ruleName, targetDocs,
+                guidanceDescription, refusal,
+                orgNames, orgAddresses,
+                daysList, purposeNamesList, citizenshipNamesList,
+                propertyNames, propertyValues,
+                ruleBuilder, profileFactory);
 
             using (var transaction = _unitOfWork.BeginTransaction())
             {

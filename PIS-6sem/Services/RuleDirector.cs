@@ -12,35 +12,25 @@ namespace PIS_6sem.Services
             List<string> orgNames,
             List<string> orgAddresses,
             List<int> daysList,
-            List<string> purposes,
-            List<string> citizenships,
+            List<List<string>> purposeNamesList,
+            List<List<string>> citizenshipNamesList,
             List<List<string>> propertyNames,
             List<List<string>> propertyValues,
             RuleBuilder ruleBuilder,
             ProfileFactory profileFactory)
         {
-            if (daysList.Count != purposes.Count ||
-                daysList.Count != citizenships.Count ||
-                daysList.Count != propertyNames.Count ||
-                daysList.Count != propertyValues.Count)
-            {
-                throw new ArgumentException("Количество элементов в списках профилей не совпадает.");
-            }
-
             ruleBuilder.Reset();
             ruleBuilder.SetName(ruleName);
 
             foreach (var doc in targetDocs)
-            {
                 ruleBuilder.AddTargetDocument(doc);
-            }
 
             for (int i = 0; i < daysList.Count; i++)
             {
                 var profile = profileFactory.CreateProfile(
                     daysList[i],
-                    purposes[i],
-                    citizenships[i],
+                    purposeNamesList[i],
+                    citizenshipNamesList[i],
                     propertyNames[i],
                     propertyValues[i]);
 

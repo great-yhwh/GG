@@ -4,33 +4,26 @@ namespace PIS_6sem.Services
 {
     public class RuleBuilder
     {
-        private string _name = string.Empty;
+        private string _name = "";
         private readonly List<string> _targetDocNames = new();
         private readonly List<Profile> _profiles = new();
         private Guidance? _guidance;
 
         public void Reset()
         {
-            _name = string.Empty;
+            _name = "";
             _targetDocNames.Clear();
             _profiles.Clear();
             _guidance = null;
         }
 
-        public void SetName(string name)
-        {
-            _name = name;
-        }
+        public void SetName(string name) => _name = name;
 
         public void AddTargetDocument(string targetDoc)
-        {
-            _targetDocNames.Add(targetDoc);
-        }
+            => _targetDocNames.Add(targetDoc);
 
         public void AddProfile(Profile profile)
-        {
-            _profiles.Add(profile);
-        }
+            => _profiles.Add(profile);
 
         public void AddGuidance(
             string description,
@@ -38,18 +31,20 @@ namespace PIS_6sem.Services
             List<string> orgNames,
             List<string> orgAddresses)
         {
-            var guidance = new Guidance();
-            guidance.SetDescription(description);
-            guidance.SetRefusal(refusal);
+            var guidance = new Guidance
+            {
+                Description = description,
+                Refusal = refusal
+            };
 
             int count = Math.Min(orgNames.Count, orgAddresses.Count);
-
             for (int i = 0; i < count; i++)
             {
-                var org = new Organization();
-                org.SetName(orgNames[i]);
-                org.SetAddress(orgAddresses[i]);
-                guidance.AddOrganization(org);
+                guidance.Organizations.Add(new Organization
+                {
+                    Name = orgNames[i],
+                    Address = orgAddresses[i]
+                });
             }
 
             _guidance = guidance;
@@ -57,25 +52,18 @@ namespace PIS_6sem.Services
 
         public Rule GetResult()
         {
-            var rule = new Rule();
-            rule.SetName(_name);
+            var rule = new Rule { Name = _name };
 
             foreach (var profile in _profiles)
-            {
-                rule.SetProfile(profile);
-            }
+                rule.Profiles.Add(profile);
 
             foreach (var docName in _targetDocNames)
             {
-                var doc = new TargetDocument();
-                doc.SetName(docName);
-                rule.SetTargetDocument(doc);
+                rule.TargetDocuments.Add(new TargetDocument { Name = docName });
             }
 
             if (_guidance != null)
-            {
-                rule.SetGuidance(_guidance);
-            }
+                rule.Guidance = _guidance;
 
             return rule;
         }
