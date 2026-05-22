@@ -1,0 +1,49 @@
+﻿using Microsoft.EntityFrameworkCore;
+using WebAPI_PIS_6sem.Entities;
+
+namespace WebAPI_PIS_6sem.Data
+{
+    public class RuleDbContext : DbContext
+    {
+        // Добавьте этот конструктор
+        public RuleDbContext(DbContextOptions<RuleDbContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Rule> Rules { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<ProfileProperty> ProfileProperties { get; set; }
+        public DbSet<Guidance> Guidances { get; set; }
+        public DbSet<TargetDocument> TargetDocuments { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Rule>()
+                .HasMany(r => r.Profiles)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Rule>()
+                .HasMany(r => r.TargetDocuments)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Rule>()
+                .HasOne(r => r.Guidance)
+                .WithOne()
+                .HasForeignKey<Guidance>("RuleId")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Profile>()
+                .HasMany(p => p.Properties)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Guidance>()
+                .HasMany(g => g.Organizations)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@WebAPI_PIS_6sem_HostAddress = http://localhost:5283
+
+### Создать правило
+POST {{WebAPI_PIS_6sem_HostAddress}}/api/rules
+Content-Type: application/json
+
+{
+  "ruleName": "Тест",
+  "targetDocs": ["doc1"],
+  "guidanceDescription": "описание",
+  "refusal": "нет",
+  "orgNames": ["Организация 1"],
+  "orgAddresses": ["Адрес 1"],
+  "daysList": [30],
+  "purposeNamesList": [["туризм"]],
+  "citizenshipNamesList": [["Россия"]],
+  "propertyNames": [[]],
+  "propertyValues": [[]]
+}
+
+### Получить правило по ID (пример, если добавите GET-метод)
+# GET {{WebAPI_PIS_6sem_HostAddress}}/api/rules/1
+# Accept: application/json
