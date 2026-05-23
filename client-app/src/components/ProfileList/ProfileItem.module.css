@@ -1,0 +1,131 @@
+.profileCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.profileCard:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+
+/* Убираем градиентную полоску сверху */
+.profileCard::before {
+    display: none;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cardTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-h);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profileNumber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: var(--bg-input);
+    color: var(--primary);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.btnRemove {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--danger);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btnRemove:hover {
+    background: var(--danger-light);
+    border-color: var(--danger);
+    color: var(--danger-dark);
+}
+
+/* Поля внутри карточки */
+.fieldRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+    .fieldRow {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fieldGroup {
+    margin-bottom: 0;
+}
+
+.label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-h);
+    margin-bottom: 4px;
+}
+
+.input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+    background: var(--bg-card);
+}
+
+.inputError {
+    border-color: var(--danger);
+}
+
+.error {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+.hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}

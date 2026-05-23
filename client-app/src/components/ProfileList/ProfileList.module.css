@@ -1,0 +1,93 @@
+.profileSection {
+    margin-bottom: 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-h);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    /* Убираем градиент — используем сплошной цвет фона */
+    background-color: var(--bg-input);
+    color: #e17055;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.btnAdd {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--sans);
+    color: var(--primary);
+    background: transparent;
+    border: 2px dashed var(--primary-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.btnAdd:hover {
+    background: var(--primary-glow);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.btnAdd:active {
+    transform: translateY(0);
+}
+
+.emptyState {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+}
+
+.emptyIcon {
+    font-size: 40px;
+    margin-bottom: 8px;
+    display: block;
+}

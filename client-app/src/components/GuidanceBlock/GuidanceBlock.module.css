@@ -1,0 +1,71 @@
+.guidanceBlock {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease;
+}
+
+.guidanceBlock:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-h);
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sectionIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: var(--bg-input);
+    color: var(--secondary);
+}
+
+.fieldGroup {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-h);
+    margin-bottom: 6px;
+}
+
+.labelOptional {
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.2);
+    background: var(--bg-card);
+}
