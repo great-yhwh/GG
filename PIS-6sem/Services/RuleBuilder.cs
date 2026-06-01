@@ -5,8 +5,8 @@ namespace PIS_6sem.Services
     public class RuleBuilder
     {
         private string _name = "";
-        private readonly List<string> _targetDocNames = new();
-        private readonly List<Profile> _profiles = new();
+        private readonly List<string> _targetDocNames = [];
+        private readonly List<Profile> _profiles = [];
         private Guidance? _guidance;
 
         public void Reset()
@@ -17,7 +17,7 @@ namespace PIS_6sem.Services
             _guidance = null;
         }
 
-        public void SetName(string name) => _name = name;
+        public void AddName(string name) => _name = name;
 
         public void AddTargetDocument(string targetDoc)
             => _targetDocNames.Add(targetDoc);

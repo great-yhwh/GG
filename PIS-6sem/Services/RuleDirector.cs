@@ -20,7 +20,7 @@ namespace PIS_6sem.Services
             ProfileFactory profileFactory)
         {
             ruleBuilder.Reset();
-            ruleBuilder.SetName(ruleName);
+            ruleBuilder.AddName(ruleName);
 
             foreach (var doc in targetDocs)
                 ruleBuilder.AddTargetDocument(doc);

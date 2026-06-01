@@ -6,7 +6,7 @@ namespace PIS_6sem
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -45,14 +45,15 @@ namespace PIS_6sem
 
             while (true)
             {
+                Console.WriteLine("Профиль");
                 Console.Write("Количество дней: ");
                 daysList.Add(int.Parse(Console.ReadLine()!));
 
                 Console.Write("Цели въезда (через ;): ");
-                purposeNamesList.Add(Console.ReadLine()!.Split(';').ToList());
+                purposeNamesList.Add([.. Console.ReadLine()!.Split(';')]);
 
                 Console.Write("Гражданства (через ;): ");
-                citizenshipNamesList.Add(Console.ReadLine()!.Split(';').ToList());
+                citizenshipNamesList.Add([.. Console.ReadLine()!.Split(';')]);
 
                 var names = new List<string>();
                 var values = new List<string>();

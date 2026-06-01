@@ -2,20 +2,10 @@
 
 namespace PIS_6sem.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(RuleDbContext db) : IUnitOfWork
     {
-        private readonly RuleDbContext _db;
-
-        // Свойство Rules — это и есть тот getter,
-        // который вызывается на шаге
-        public IRuleRepository Rules { get; private set; }
-
-        public UnitOfWork(RuleDbContext db)
-        {
-            _db = db;
-            // Репозитории создаются один раз в конструкторе
-            Rules = new RuleRepository(db);
-        }
+        private readonly RuleDbContext _db = db;
+        public IRuleRepository Rules { get; private set; } = new RuleRepository(db);
 
         //начало транзакции
         public IDbContextTransaction BeginTransaction()
@@ -29,9 +19,6 @@ namespace PIS_6sem.Data
             return _db.SaveChanges();
         }
 
-        public void Dispose()
-        {
-            _db.Dispose();
-        }
+        public void Dispose() => _db.Dispose();
     }
 }
