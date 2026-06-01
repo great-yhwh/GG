@@ -5,6 +5,5 @@ namespace PIS_6sem.Data
     public interface IRuleRepository
     {
         void Add(Rule rule);
-        Rule? GetById(int id);
     }
 }
