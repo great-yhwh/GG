@@ -5,8 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; } = "";
 
-        public List<Profile> Profiles { get; set; } = new();
-        public List<TargetDocument> TargetDocuments { get; set; } = new();
-        public Guidance? Guidance { get; set; }
+        public List<Profile> Profiles { get; set; } = [];
+        public List<TargetDocument> TargetDocuments { get; set; } = [];
+        public Guidance Guidance { get; set; } = new(); 
     }
 }

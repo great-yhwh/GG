@@ -26,8 +26,9 @@ namespace WebAPI_PIS_6sem.Data
 
             modelBuilder.Entity<Rule>()
                 .HasOne(r => r.Guidance)
-                .WithOne()
-                .HasForeignKey<Guidance>("RuleId")
+                .WithOne(g => g.Rule)                          
+                .HasForeignKey<Guidance>(g => g.RuleId)        
+                .IsRequired()                                  
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Profile>()

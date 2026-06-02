@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public int Days { get; set; }
 
-        public List<ProfileProperty> Properties { get; set; } = new();
+        public List<ProfileProperty> Properties { get; set; } = [];
     }
 }

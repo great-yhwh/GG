@@ -6,6 +6,9 @@
         public string Description { get; set; } = "";
         public string Refusal { get; set; } = "";
 
-        public List<Organization> Organizations { get; set; } = new();
+        public int RuleId { get; set; }          
+        public Rule Rule { get; set; } = null!; 
+
+        public List<Organization> Organizations { get; set; } = [];
     }
 }
