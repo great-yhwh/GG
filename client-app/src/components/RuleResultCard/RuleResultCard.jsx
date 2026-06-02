@@ -11,101 +11,171 @@ export const RuleResultCard = ({ rule }) => {
         profiles = [],
     } = rule;
 
+    const targetDocumentNames = targetDocuments
+        .map((doc) => (typeof doc === "string" ? doc : doc?.name))
+        .filter(Boolean);
+
     return (
         <div className={styles.card}>
             <div className={styles.header}>
-                <div className={styles.headerIcon}>🤩</div>
-                <div>
+                <div className={styles.headerIcon}>✓</div>
+
+                <div className={styles.headerContent}>
+                    <span className={styles.status}>Успешно</span>
                     <h3 className={styles.title}>Правило успешно создано</h3>
-                    <p className={styles.subtitle}>ID: {id}</p>
+                    <p className={styles.subtitle}>
+                        ID правила: <span className={styles.idBadge}>{id}</span>
+                    </p>
                 </div>
             </div>
 
-            <div className={styles.content}>
-                {/* Название правила */}
-                <div className={styles.field}>
-                    <div className={styles.fieldLabel}>Название правила</div>
-                    <div className={styles.fieldValue}>{name}</div>
-                </div>
+            <div className={styles.section}>
+                <div className={styles.sectionLabel}>Название правила</div>
+                <div className={styles.sectionValue}>{name || "—"}</div>
+            </div>
 
-                {/* Целевые документы */}
-                {targetDocuments.length > 0 && (
-                    <div className={styles.field}>
-                        <div className={styles.fieldLabel}>Целевые документы</div>
-                        <div className={styles.fieldValue}>
-                            {targetDocuments.map((doc, idx) => (
-                                <span key={idx} className={styles.badge}>{doc.name}</span>
-                            ))}
-                        </div>
+            {targetDocumentNames.length > 0 && (
+                <div className={styles.section}>
+                    <div className={styles.sectionLabel}>Целевые документы</div>
+                    <div className={styles.chips}>
+                        {targetDocumentNames.map((doc, idx) => (
+                            <span key={idx} className={styles.chip}>
+                                {doc}
+                            </span>
+                        ))}
                     </div>
-                )}
+                </div>
+            )}
 
-                {/* Профили */}
-                {profiles.length > 0 && (
-                    <div className={styles.field}>
-                        <div className={styles.fieldLabel}>Профили</div>
-                        <div className={styles.profilesList}>
-                            {profiles.map((profile, idx) => (
+            {profiles.length > 0 && (
+                <div className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <div className={styles.sectionLabel}>Профили</div>
+                        <span className={styles.countBadge}>{profiles.length}</span>
+                    </div>
+
+                    <div className={styles.profileList}>
+                        {profiles.map((profile, idx) => {
+                            const purposes = profile.purposes || [];
+                            const citizenships = profile.citizenships || [];
+                            const properties = profile.properties || [];
+
+                            return (
                                 <div key={idx} className={styles.profileCard}>
-                                    <div className={styles.profileHeader}>Профиль #{idx + 1}</div>
-                                    <div className={styles.profileRow}>
-                                        <span>Дней:</span> <strong>{profile.days}</strong>
+                                    <div className={styles.profileHeader}>
+                                        <div className={styles.profileTitle}>
+                                            Профиль #{idx + 1}
+                                        </div>
+                                        <span className={styles.daysBadge}>
+                                            {profile.days} дн.
+                                        </span>
                                     </div>
-                                    {profile.purposes?.length > 0 && (
-                                        <div className={styles.profileRow}>
-                                            <span>Цели:</span> {profile.purposes.join(", ")}
-                                        </div>
-                                    )}
-                                    {profile.citizenships?.length > 0 && (
-                                        <div className={styles.profileRow}>
-                                            <span>Гражданства:</span> {profile.citizenships.join(", ")}
-                                        </div>
-                                    )}
-                                    {profile.properties?.length > 0 && (
-                                        <div className={styles.profileRow}>
-                                            <span>Свойства:</span>
-                                            <ul className={styles.propertyList}>
-                                                {profile.properties.map((prop, i) => (
-                                                    <li key={i}>{prop.name}: {prop.value}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
 
-                {/* Guidance */}
-                {guidance && (
-                    <div className={styles.field}>
-                        <div className={styles.fieldLabel}>Руководство</div>
-                        <div className={styles.guidanceBlock}>
-                            {guidance.description && (
-                                <div className={styles.guidanceItem}>
-                                    <span>Описание:</span> {guidance.description}
+                                    <div className={styles.detailList}>
+                                        <div className={styles.detailRow}>
+                                            <div className={styles.detailLabel}>Дней</div>
+                                            <div className={styles.detailValue}>
+                                                {profile.days}
+                                            </div>
+                                        </div>
+
+                                        {purposes.length > 0 && (
+                                            <div className={styles.detailRow}>
+                                                <div className={styles.detailLabel}>Цели</div>
+                                                <div className={styles.chips}>
+                                                    {purposes.map((purpose, i) => (
+                                                        <span key={i} className={styles.chip}>
+                                                            {purpose}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {citizenships.length > 0 && (
+                                            <div className={styles.detailRow}>
+                                                <div className={styles.detailLabel}>
+                                                    Гражданства
+                                                </div>
+                                                <div className={styles.chips}>
+                                                    {citizenships.map((citizenship, i) => (
+                                                        <span key={i} className={styles.chip}>
+                                                            {citizenship}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {properties.length > 0 && (
+                                            <div className={styles.detailBlock}>
+                                                <div className={styles.detailLabel}>Свойства</div>
+                                                <div className={styles.properties}>
+                                                    {properties.map((prop, i) => (
+                                                        <div key={i} className={styles.propertyItem}>
+                                                            <span className={styles.propertyName}>
+                                                                {prop.name}
+                                                            </span>
+                                                            <span className={styles.propertySeparator}>
+                                                                —
+                                                            </span>
+                                                            <span className={styles.propertyValue}>
+                                                                {prop.value}
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                            )}
-                            {guidance.refusal && (
-                                <div className={styles.guidanceItem}>
-                                    <span>Отказ:</span> {guidance.refusal}
-                                </div>
-                            )}
-                            {guidance.organizations?.length > 0 && (
-                                <div className={styles.guidanceItem}>
-                                    <span>Организации:</span>
-                                    <ul>
-                                        {guidance.organizations.map((org, i) => (
-                                            <li key={i}>{org.name} — {org.address}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
+                            );
+                        })}
                     </div>
-                )}
-            </div>
+                </div>
+            )}
+
+            {guidance && (
+                <div className={styles.section}>
+                    <div className={styles.sectionLabel}>Руководство</div>
+
+                    <div className={styles.guidanceGrid}>
+                        {guidance.description && (
+                            <div className={styles.guidanceCard}>
+                                <div className={styles.guidanceLabel}>Описание</div>
+                                <div className={styles.guidanceText}>
+                                    {guidance.description}
+                                </div>
+                            </div>
+                        )}
+
+                        {guidance.refusal && (
+                            <div className={styles.guidanceCard}>
+                                <div className={styles.guidanceLabel}>Отказ</div>
+                                <div className={styles.guidanceText}>
+                                    {guidance.refusal}
+                                </div>
+                            </div>
+                        )}
+
+                        {guidance.organizations?.length > 0 && (
+                            <div className={styles.guidanceCard}>
+                                <div className={styles.guidanceLabel}>Организации</div>
+                                <div className={styles.orgList}>
+                                    {guidance.organizations.map((org, i) => (
+                                        <div key={i} className={styles.orgItem}>
+                                            <div className={styles.orgName}>{org.name}</div>
+                                            <div className={styles.orgAddress}>
+                                                {org.address}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
