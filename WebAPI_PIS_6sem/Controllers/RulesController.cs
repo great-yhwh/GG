@@ -7,16 +7,10 @@ namespace WebAPI_PIS_6sem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RulesController : ControllerBase
+    public class RulesController(ServiceRule serviceRule, IUnitOfWork unitOfWork) : ControllerBase
     {
-        private readonly ServiceRule _serviceRule;
-        private readonly IUnitOfWork _unitOfWork;
-
-        public RulesController(ServiceRule serviceRule, IUnitOfWork unitOfWork)
-        {
-            _serviceRule = serviceRule;
-            _unitOfWork = unitOfWork;
-        }
+        private readonly ServiceRule _serviceRule = serviceRule;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         [HttpPost]
         public IActionResult Create([FromBody] CreateRuleRequest request)

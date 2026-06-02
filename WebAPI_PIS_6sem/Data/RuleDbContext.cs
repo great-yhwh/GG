@@ -3,12 +3,8 @@ using WebAPI_PIS_6sem.Entities;
 
 namespace WebAPI_PIS_6sem.Data
 {
-    public class RuleDbContext : DbContext
+    public class RuleDbContext(DbContextOptions<RuleDbContext> options) : DbContext(options)
     {
-        public RuleDbContext(DbContextOptions<RuleDbContext> options) : base(options)
-        {
-        }
-
         public DbSet<Rule> Rules { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<ProfileProperty> ProfileProperties { get; set; }

@@ -2,28 +2,17 @@
 
 namespace WebAPI_PIS_6sem.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(RuleDbContext db) : IUnitOfWork
     {
-        private readonly RuleDbContext _db;
+        private readonly RuleDbContext _db = db;
 
-        // Свойство Rules — это и есть тот getter,
-        // который вызывается на шаге 5 диаграммы
-        public IRuleRepository Rules { get; private set; }
+        public IRuleRepository Rules { get; private set; } = new RuleRepository(db);
 
-        public UnitOfWork(RuleDbContext db)
-        {
-            _db = db;
-            // Репозитории создаются один раз в конструкторе
-            Rules = new RuleRepository(db);
-        }
-
-        // Шаг 1-2 диаграммы: начало транзакции
         public IDbContextTransaction BeginTransaction()
         {
             return _db.Database.BeginTransaction();
         }
 
-        // Шаг 11-12 диаграммы: сохранение
         public int Save()
         {
             return _db.SaveChanges();

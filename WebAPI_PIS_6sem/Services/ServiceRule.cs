@@ -3,16 +3,10 @@ using WebAPI_PIS_6sem.Entities;
 
 namespace WebAPI_PIS_6sem.Services
 {
-    public class ServiceRule
+    public class ServiceRule(IUnitOfWork unitOfWork, RuleDirector director)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly RuleDirector _director;
-
-        public ServiceRule(IUnitOfWork unitOfWork, RuleDirector director)
-        {
-            _unitOfWork = unitOfWork;
-            _director = director;
-        }
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly RuleDirector _director = director;
 
         public Rule CreateRule(
             string ruleName,
