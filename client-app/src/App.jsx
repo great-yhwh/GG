@@ -1,7 +1,7 @@
-import { RuleForm } from "./components/RuleForm/RuleForm";
+import {RuleConstructor} from "./components/RuleConstructor/RuleConstructor.jsx";
 
 function App() {
-  return <RuleForm />;
+  return <RuleConstructor />;
 }
 
 export default App;

@@ -8,6 +8,25 @@
     transition: all 0.2s ease;
     position: relative;
 }
+.dragHandle {
+    cursor: grab;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--text-muted);
+    padding: 0 8px;
+    user-select: none;
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
 
 .profileCard:hover {
     box-shadow: var(--shadow-md);
@@ -67,7 +86,7 @@
 .btnRemove:hover {
     background: var(--danger-light);
     border-color: var(--danger);
-    color: var(--danger-dark);
+    /*color: var(--danger-dark);*/
 }
 
 /* Поля внутри карточки */

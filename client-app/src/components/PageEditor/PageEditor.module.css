@@ -1,0 +1,60 @@
+.pageEditor {
+    padding: 24px;
+}
+
+.pageHeader {
+    margin-bottom: 24px;
+}
+
+.pageNameInput {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 20px;
+    font-weight: 600;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-h);
+}
+
+.pageNameInput:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+.blocksContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.addBlockMenu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.addBlockMenu button {
+    background: transparent;
+    border: 1px dashed var(--primary-light);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.addBlockMenu button:hover {
+    background: var(--primary-glow);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}

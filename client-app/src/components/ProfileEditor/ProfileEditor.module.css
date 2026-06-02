@@ -1,0 +1,218 @@
+.profileEditor {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: var(--bg-card);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--primary-glow);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fieldRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.fieldGroup,
+.propertyField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.fieldGroup label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    font-family: var(--sans);
+    color: var(--text);
+}
+
+.input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+    outline: none;
+    background: var(--bg-card);
+}
+
+.inputError {
+    border-color: var(--danger) !important;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 3px var(--danger-light);
+}
+
+.error {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.propertiesSection {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.sectionTitle {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.sectionSubtitle {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.propertyCount {
+    min-width: 28px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--primary-glow);
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.emptyProps {
+    text-align: center;
+    padding: 18px;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+}
+
+.propertyList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.propertyRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 12px;
+    align-items: start;
+}
+
+.removeProp {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 0 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    color: var(--danger);
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.removeProp:hover {
+    background: var(--danger-light);
+    border-color: var(--danger);
+}
+
+.addPropBtn {
+    align-self: flex-start;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px dashed var(--primary);
+    color: var(--primary);
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.addPropBtn:hover {
+    background: var(--primary-glow);
+}
+
+@media (max-width: 768px) {
+    .profileEditor {
+        padding: 20px;
+    }
+
+    .fieldRow {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .propertyRow {
+        grid-template-columns: 1fr;
+    }
+
+    .removeProp {
+        width: 100%;
+        height: auto;
+        padding: 10px 14px;
+    }
+
+    .addPropBtn {
+        width: 100%;
+        border-radius: var(--radius-sm);
+    }
+}

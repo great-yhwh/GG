@@ -10,6 +10,12 @@
   --success: #26a69a;
   --success-light: #e0f2f1;
 
+  --accent: var(--primary);
+  --accent-bg: var(--primary-glow);
+  --accent-border: var(--primary-light);
+  --social-bg: var(--bg-input);
+  --shadow: var(--shadow-md);
+
   --text: #374151;
   --text-h: #1f2937;
   --text-muted: #6b7280;
