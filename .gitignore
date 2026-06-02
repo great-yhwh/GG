@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /WebAPI_PIS_6sem/rules.db
 /.DS_Store
+/WebAPI_PIS_6sem/.DS_Store
+*.db-shm
+*.db-wal
