@@ -2,15 +2,15 @@
 
 namespace PIS_6sem.Data
 {
-    public interface IUnitOfWork :
+    public interface IUnitOfWork
     {
         // доступ к репозиторию
         IRuleRepository Rules { get; }
 
-        // управление транзакцией
+        // правление транзакцией
         IDbContextTransaction BeginTransaction();
 
-        // сохранение
+        // сохранение 
         int Save();
     }
 }
