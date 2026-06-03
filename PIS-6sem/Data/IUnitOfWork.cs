@@ -2,15 +2,15 @@
 
 namespace PIS_6sem.Data
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork :
     {
-        // Свойства-геттеры для доступа к репозиториям
+        // доступ к репозиторию
         IRuleRepository Rules { get; }
 
-        // Управление транзакцией
+        // управление транзакцией
         IDbContextTransaction BeginTransaction();
 
-        // Сохранение изменений
+        // сохранение
         int Save();
     }
 }

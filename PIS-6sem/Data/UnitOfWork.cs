@@ -18,7 +18,5 @@ namespace PIS_6sem.Data
         {
             return _db.SaveChanges();
         }
-
-        public void Dispose() => _db.Dispose();
     }
 }
